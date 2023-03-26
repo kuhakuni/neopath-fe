@@ -4,7 +4,7 @@
 
 ### Description
 
-Built with React Native and Expo for Varsity Hackaton 2023.
+Built with React Native and Expo for Varsity Hackathon 2023.
 
 ### Installation
 
