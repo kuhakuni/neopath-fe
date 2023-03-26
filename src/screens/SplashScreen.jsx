@@ -1,20 +1,18 @@
-import { View, StyleSheet, Image } from "react-native";
+import { SafeAreaView, StyleSheet, Image } from "react-native";
+import Colors from "../styles/Colors";
 
 export default function SplashScreen() {
 	return (
-		<View style={styles.container}>
-			<Image
-				style={styles.logo}
-				source={require("../../assets/logo.png")}
-			/>
-		</View>
+		<SafeAreaView style={styles.container}>
+			<Image style={styles.logo} source={require("../assets/logo.png")} />
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
+		backgroundColor: Colors.white,
 		alignItems: "center",
 		justifyContent: "center",
 	},

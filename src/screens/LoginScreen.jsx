@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, Image, TextInput } from "react-native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import Colors from "../styles/Colors";
 import ButtonPrimary from "../components/ButtonPrimary";
 
 const LoginScreen = ({ navigation }) => {
@@ -9,6 +11,7 @@ const LoginScreen = ({ navigation }) => {
 		email: "",
 		password: "",
 	});
+	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const styles = StyleSheet.create({
 		container: {
 			position: "relative",
@@ -45,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
 			borderWidth: 1,
 		},
 		error: {
-			color: "#ff0000",
+			color: Colors.red,
 			fontWeight: 500,
 		},
 	});
@@ -70,15 +73,15 @@ const LoginScreen = ({ navigation }) => {
 		setError(errors);
 
 		if (Object.keys(errors).length === 0) {
-			navigation.navigate("AfterLoginScreen");
 		}
+		navigation.navigate("AfterLoginScreen");
 	};
 
 	return (
 		<View style={styles.container}>
 			<Image
 				style={styles.img}
-				source={require("../../assets/logo-2.png")}
+				source={require("../assets/logo-2.png")}
 			/>
 			<View style={styles.loginContainer}>
 				<Text style={styles.heading}>Login</Text>
@@ -110,6 +113,7 @@ const LoginScreen = ({ navigation }) => {
 					<View
 						style={{
 							marginBottom: 15,
+							position: "relative",
 						}}
 					>
 						<TextInput
@@ -121,8 +125,21 @@ const LoginScreen = ({ navigation }) => {
 							}}
 							placeholder="Password"
 							value={password}
-							secureTextEntry={true}
+							secureTextEntry={!isPasswordVisible}
 							onChangeText={(text) => setPassword(text)}
+						/>
+						<Ionicons
+							name={isPasswordVisible ? "eye-off" : "eye"}
+							size={20}
+							color={Colors.gray}
+							style={{
+								position: "absolute",
+								right: 15,
+								top: 15,
+							}}
+							onPress={() =>
+								setIsPasswordVisible(!isPasswordVisible)
+							}
 						/>
 						{error.password && (
 							<Text style={styles.error}>{error.password}</Text>
@@ -136,11 +153,7 @@ const LoginScreen = ({ navigation }) => {
 						Forgot password?
 					</Text>
 				</View>
-				<ButtonPrimary
-					title="Login"
-					disabled={email.length === 0 || password.length === 0}
-					onPress={handleLogin}
-				/>
+				<ButtonPrimary title="Login" onPress={handleLogin} />
 			</View>
 		</View>
 	);

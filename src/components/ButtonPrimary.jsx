@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import Colors from "../styles/Colors";
 
 export default ButtonPrimary = (props) => {
 	const styles = StyleSheet.create({
@@ -9,10 +10,10 @@ export default ButtonPrimary = (props) => {
 			paddingVertical: 12,
 			paddingHorizontal: 32,
 			borderRadius: 10,
-			backgroundColor: "#3E71F3",
+			backgroundColor: Colors.primary,
 		},
 		buttonText: {
-			color: "white",
+			color: Colors.white,
 			fontSize: props?.fontSize || 16,
 		},
 	});

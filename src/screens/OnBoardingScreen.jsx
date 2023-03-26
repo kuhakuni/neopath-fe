@@ -9,8 +9,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import ButtonPrimary from "../components/ButtonPrimary";
-import onBoard2 from "../../assets/onboard-2.svg";
-import { Svg, Image as ImageSvg } from "react-native-svg";
+import Colors from "../styles/Colors";
 
 const { width, height } = Dimensions.get("window");
 
@@ -18,7 +17,7 @@ const Indicator = ({ isActive }) => {
 	return (
 		<Pressable
 			style={{
-				backgroundColor: isActive ? "#3E71F3" : "#D9D9D9",
+				backgroundColor: isActive ? Colors.primary : "#D9D9D9",
 				width: 10,
 				height: 10,
 				borderRadius: 5,
@@ -39,9 +38,6 @@ export default OnBoardingScreen = ({ route, navigation }) => {
 				<Text style={styles.skip}>{isActive === 3 ? "" : "Skip"}</Text>
 			</TouchableOpacity>
 			<Image source={img} style={styles.img} />
-			{/* <Svg width={"300"} height={height / 2 - 50}>
-				<Image href={onBoard2} width={"300"} height={height / 2 - 50} />
-			</Svg> */}
 			<View style={styles.containerText}>
 				<Text style={styles.heading}>{heading}</Text>
 				<Text style={styles.paragraph}>{paragraph}</Text>
@@ -169,7 +165,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 50,
 		paddingHorizontal: 20,
 		zIndex: 1,
-		backgroundColor: "white",
+		backgroundColor: Colors.white,
 		bottom: 0,
 		width: width,
 		height: height / 2,

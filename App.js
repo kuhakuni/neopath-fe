@@ -5,7 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./src/screens/LoginScreen";
 import AfterLoginScreen from "./src/screens/AfterLoginScreen";
-
+import PersonalFormScreen from "./src/screens/PersonalFormScreen";
+import TestScreen from "./src/screens/TestScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -35,7 +36,7 @@ export default function App() {
 						heading: "Unlock Your True Potential",
 						paragraph:
 							"Take a journey of self-discovery to unlock your full potential and achieve your goals.",
-						img: require("./assets/onboard-1.png"),
+						img: require("./src/assets/onboard-1.png"),
 					}}
 				/>
 				<Stack.Screen
@@ -46,7 +47,7 @@ export default function App() {
 						heading: "Navigate Your Best Career Path",
 						paragraph:
 							"Find your best career path based on your unique strengths and interests.",
-						img: require("./assets/onboard-2.png"),
+						img: require("./src/assets/onboard-2.png"),
 					}}
 				/>
 				<Stack.Screen
@@ -57,7 +58,7 @@ export default function App() {
 						heading: "Start your career journey now!",
 						paragraph:
 							"Access a variety of learning resources to enhance your skills and knowledge.",
-						img: require("./assets/onboard-3.png"),
+						img: require("./src/assets/onboard-3.png"),
 					}}
 				/>
 				<Stack.Screen name="LoginScreen" component={LoginScreen} />
@@ -65,6 +66,11 @@ export default function App() {
 					name="AfterLoginScreen"
 					component={AfterLoginScreen}
 				/>
+				<Stack.Screen
+					name="PersonalFormScreen"
+					component={PersonalFormScreen}
+				/>
+				<Stack.Screen name="TestScreen" component={TestScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import ButtonPrimary from "../components/ButtonPrimary";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Colors from "../styles/Colors";
 
-const { height } = Dimensions.get("window");
-const AfterLoginScreen = () => {
+const AfterLoginScreen = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>
@@ -10,7 +11,7 @@ const AfterLoginScreen = () => {
 				<Text
 					style={{
 						fontWeight: "bold",
-						color: "#3E71F3",
+						color: Colors.primary,
 					}}
 				>
 					NeoPath
@@ -39,16 +40,29 @@ const AfterLoginScreen = () => {
 					Uncover your hidden talents
 				</Text>
 			</View>
-			<Text
+			<View
 				style={{
 					marginTop: 20,
+					flexDirection: "row",
+					alignItems: "center",
 				}}
 			>
-				15 - 20 minutes
-			</Text>
+				<MaterialCommunityIcons
+					name="clock-time-three-outline"
+					size={24}
+					color="black"
+				/>
+				<Text
+					style={{
+						marginStart: 5,
+					}}
+				>
+					15 - 20 minutes
+				</Text>
+			</View>
 			<Image
 				style={styles.img}
-				source={require("../../assets/afterLogin.png")}
+				source={require("../assets/afterLogin.png")}
 			/>
 			<View
 				style={{
@@ -59,11 +73,11 @@ const AfterLoginScreen = () => {
 				<ButtonPrimary
 					title="Take a Test"
 					fontSize={18}
-					onPress={() => navigation.navigate("TestScreen")}
+					onPress={() => navigation.navigate("PersonalFormScreen")}
 				/>
 				<Text
 					style={{
-						marginTop: 20,
+						marginTop: 15,
 						fontSize: 16,
 						color: "#838383",
 					}}
@@ -80,8 +94,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		paddingTop: 50,
-		backgroundColor: "#ffffff",
-		maxHeight: height,
+		backgroundColor: Colors.white,
 	},
 	title: {
 		marginTop: 20,
