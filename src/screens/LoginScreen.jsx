@@ -1,10 +1,19 @@
-import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+import {
+	View,
+	Text,
+	StyleSheet,
+	Image,
+	TextInput,
+	ActivityIndicator,
+} from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../styles/Colors";
-import ButtonPrimary from "../components/ButtonPrimary";
+import ButtonPrimary from "../components/Button.component";
+import { useAuth } from "../config/Auth";
+import { TouchableOpacity } from "react-native";
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState({
@@ -12,6 +21,8 @@ const LoginScreen = ({ navigation }) => {
 		password: "",
 	});
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+	const [isLoading, setLoading] = useState(false);
+	const auth = useAuth();
 	const styles = StyleSheet.create({
 		container: {
 			position: "relative",
@@ -30,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
 		},
 		inputContainer: {
 			marginTop: 20,
-			marginBottom: 50,
+			marginBottom: 40,
 		},
 		heading: {
 			fontSize: 30,
@@ -51,9 +62,22 @@ const LoginScreen = ({ navigation }) => {
 			color: Colors.red,
 			fontWeight: 500,
 		},
+		button: {
+			alignItems: "center",
+			justifyContent: "center",
+			paddingVertical: 12,
+			paddingHorizontal: 32,
+			borderRadius: 10,
+			backgroundColor: Colors.primary,
+		},
+		buttonText: {
+			color: Colors.white,
+			fontSize: 16,
+		},
 	});
 
-	const handleLogin = () => {
+	const handleLogin = async () => {
+		setLoading(true);
 		let errors = {};
 
 		if (!email) {
@@ -73,8 +97,9 @@ const LoginScreen = ({ navigation }) => {
 		setError(errors);
 
 		if (Object.keys(errors).length === 0) {
+			auth.signIn(email, password);
 		}
-		navigation.navigate("AfterLoginScreen");
+		setLoading(false);
 	};
 
 	return (
@@ -153,7 +178,18 @@ const LoginScreen = ({ navigation }) => {
 						Forgot password?
 					</Text>
 				</View>
-				<ButtonPrimary title="Login" onPress={handleLogin} />
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => handleLogin()}
+					activeOpacity={0.7}
+					disabled={isLoading}
+				>
+					{isLoading ? (
+						<ActivityIndicator color={Colors.white} />
+					) : (
+						<Text style={styles.buttonText}>Login</Text>
+					)}
+				</TouchableOpacity>
 			</View>
 		</View>
 	);
