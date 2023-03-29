@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import ButtonPrimary from "../components/ButtonPrimary";
+import ButtonPrimary from "../components/Button.component";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colors from "../styles/Colors";
+import { Pressable } from "react-native";
 
 const AfterLoginScreen = ({ navigation }) => {
 	return (
@@ -75,15 +76,21 @@ const AfterLoginScreen = ({ navigation }) => {
 					fontSize={18}
 					onPress={() => navigation.navigate("PersonalFormScreen")}
 				/>
-				<Text
+				<Pressable
 					style={{
 						marginTop: 15,
-						fontSize: 16,
-						color: "#838383",
 					}}
+					onPress={() => {}}
 				>
-					Skip for now
-				</Text>
+					<Text
+						style={{
+							fontSize: 16,
+							color: "#838383",
+						}}
+					>
+						Skip for now
+					</Text>
+				</Pressable>
 			</View>
 		</View>
 	);

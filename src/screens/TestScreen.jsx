@@ -8,8 +8,8 @@ import {
 	Image,
 } from "react-native";
 import { useState } from "react";
-import ButtonPrimary from "../components/ButtonPrimary";
-import RadioButton from "../components/RadioButton";
+import ButtonPrimary from "../components/Button.component";
+import RadioButton from "../components/RadioButton.component";
 import { AntDesign } from "@expo/vector-icons";
 import { Styles } from "../styles/Styles";
 import Colors from "../styles/Colors";
@@ -143,7 +143,7 @@ export default TestScreen = ({ navigation }) => {
 				))}
 				<ButtonPrimary
 					title="Submit"
-					onPress={() => navigation.navigate("Results")}
+					onPress={() => navigation.navigate("ResultsScreen")}
 				/>
 				<View style={{ height: 80 }} />
 			</ScrollView>

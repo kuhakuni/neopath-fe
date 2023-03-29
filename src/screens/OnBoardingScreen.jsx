@@ -8,7 +8,7 @@ import {
 	Pressable,
 	TouchableOpacity,
 } from "react-native";
-import ButtonPrimary from "../components/ButtonPrimary";
+import ButtonPrimary from "../components/Button.component";
 import Colors from "../styles/Colors";
 
 const { width, height } = Dimensions.get("window");

@@ -11,7 +11,7 @@ import { useMemo, useRef, useCallback, useState } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { Picker } from "@react-native-picker/picker";
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
-import ButtonPrimary from "../components/ButtonPrimary";
+import ButtonPrimary from "../components/Button.component";
 import Colors from "../styles/Colors";
 
 export default function PersonalFormScreen({ navigation }) {
