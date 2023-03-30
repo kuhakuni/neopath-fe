@@ -1,36 +1,103 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
+import * as Progress from "react-native-progress";
+import ButtonPrimary from "../components/Button.component";
 import Colors from "../styles/Colors";
-// import RadarChart from "react-svg-radar-chart";
 
 const data = [
 	{
-		data: {
-			critical: 0.9,
-			problem: 0.95,
-			data: 0.75,
-			detail: 0.35,
-			communication: 0.8,
-			business: 0.85,
-		},
-		meta: { color: Colors.primary },
+		value: 0.95,
+		caption: "Problem Solving",
+	},
+	{
+		value: 0.9,
+		caption: "Critical Thinking",
+	},
+	{
+		value: 0.75,
+		caption: "Data Analysis",
+	},
+	{
+		value: 0.35,
+		caption: "Detail-oriented",
+	},
+	{
+		value: 0.8,
+		caption: "Communication",
+	},
+	{
+		value: 0.85,
+		caption: "Business Acumen",
 	},
 ];
 
-const captions = {
-	// columns
-	critical: "Critical Thinking",
-	problem: "Problem Solving",
-	data: "Data Analysis",
-	detail: "Detail-oriented",
-	communication: "Communication Skills",
-	business: "Business Acumen",
-};
-
-export default ValueComponent = () => {
+export default ValueComponent = ({ onPress }) => {
 	return (
-		<View>
-        <Text>Result</Text>
-			{/* <RadarChart captions={captions} data={data} size={450} /> */}
+		<View
+			style={{
+				marginTop: 30,
+			}}
+		>
+			<View
+				style={{
+					height: 300,
+				}}
+			>
+				<Image
+					source={require("../assets/chart.png")}
+					style={{
+						width: 300,
+						height: 300,
+						resizeMode: "contain",
+					}}
+				/>
+			</View>
+			{data.map((item, index) => {
+				return (
+					<View
+						key={index}
+						style={{
+							flexDirection: "row",
+							justifyContent: "space-between",
+							alignItems: "center",
+							marginTop: 15,
+						}}
+					>
+						<Text
+							style={{
+								fontSize: 14,
+								color: "#343434",
+							}}
+						>
+							{item.caption}
+						</Text>
+						<View>
+							<Progress.Bar
+								progress={item.value}
+								color={Colors.primary}
+								unfilledColor={"#D7D7D7"}
+								borderWidth={0}
+								width={100}
+								height={10}
+							/>
+						</View>
+						<Text
+							style={{
+								fontSize: 14,
+								color: "#343434",
+							}}
+						>
+							{item.value * 10}/10
+						</Text>
+					</View>
+				);
+			})}
+			<View
+				style={{
+					marginTop: 30,
+				}}
+			>
+				<ButtonPrimary title="Next" onPress={onPress} />
+			</View>
 		</View>
 	);
 };

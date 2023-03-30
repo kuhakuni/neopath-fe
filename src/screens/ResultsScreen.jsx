@@ -138,7 +138,9 @@ export default ResultsScreen = () => {
 					flex: 1,
 				}}
 			>
-				{selectedTab === 1 && <ValueComponent />}
+				{selectedTab === 1 && (
+					<ValueComponent onPress={() => setSelectedTab(2)} />
+				)}
 				{selectedTab === 2 && (
 					<StrengthComponent onPress={() => setSelectedTab(3)} />
 				)}
