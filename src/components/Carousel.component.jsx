@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 	},
 	carouselContainer: {
 		width: "100%",
-		height: 500,
+		maxHeight: 500,
 		position: "relative",
 	},
 	cardImage: {

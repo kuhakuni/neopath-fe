@@ -139,8 +139,24 @@ export default ResultsScreen = () => {
 				}}
 			>
 				{selectedTab === 1 && <ValueComponent />}
-				{selectedTab === 2 && <StrengthComponent />}
-				{selectedTab === 3 && <RoleComponent />}
+				{selectedTab === 2 && (
+					<StrengthComponent onPress={() => setSelectedTab(3)} />
+				)}
+				{selectedTab === 3 && (
+					<>
+						<RoleComponent />
+						<Text
+							style={{
+								marginTop: 30,
+								fontSize: 14,
+								textAlign: "center",
+								color: "#393939",
+							}}
+						>
+							Not sure about this
+						</Text>
+					</>
+				)}
 			</View>
 		</View>
 	);

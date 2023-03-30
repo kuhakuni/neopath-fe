@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 import ButtonPrimary from "../components/Button.component";
 import CarouselComponent from "./Carousel.component";
 
-export default StrengthComponent = () => {
+export default StrengthComponent = ({ onPress }) => {
 	const data = [
 		{
 			title: "Problem Solving",
@@ -20,12 +20,11 @@ export default StrengthComponent = () => {
 			<CarouselComponent data={data} />
 			<View
 				style={{
-					flex: 1,
 					width: "100%",
 					paddingHorizontal: 50,
 				}}
 			>
-				<ButtonPrimary title="Next" onPress={() => {}} />
+				<ButtonPrimary title="Next" onPress={onPress} />
 			</View>
 		</View>
 	);

@@ -11,21 +11,23 @@ export default AuthStack = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [isFirstTime, setFirstTime] = useState(true);
 
-	useEffect(() => {
-		(async () => {
-			const isFirstTime = await AsyncStorage.getItem("isFirstTime");
-			if (isFirstTime === null) {
-				await AsyncStorage.setItem("isFirstTime", "false");
-			} else {
-				setFirstTime(false);
-			}
-			setLoading(false);
-		})();
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const isFirstTime = await AsyncStorage.getItem("isFirstTime");
+	// 		if (isFirstTime === null) {
+	// 			await AsyncStorage.setItem("isFirstTime", "false");
+	// 		} else {
+	// 			setFirstTime(false);
+	// 		}
+	// 		setLoading(false);
+	// 	})();
+	// }, []);
 
 	useEffect(() => {
-		console.log(isFirstTime);
-	}, [isFirstTime]);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
+	}, []);
 
 	if (isLoading) {
 		return <SplashScreen />;
