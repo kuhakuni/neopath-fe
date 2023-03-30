@@ -29,7 +29,7 @@ const MentorList = () => {
 				</View>
 			</View>
 			<View style={[styles.card1, styles.mt10]}>
-				<View style={styles.card2}>
+				{/* <View style={styles.card2}>
 					<View style={styles.verticalContainer}>
 						<View style={styles.imageContainer}>
 							<Image
@@ -137,19 +137,21 @@ const MentorList = () => {
 							</View>
 						</View>
 					</View>
-				</View>
+				</View> */}
+				<SingleMentorList
+					mentorImage={require("../assets/image7.png")}
+					mentorName="Adinda Maharani"
+					mentorPosition="UX Researcher at Meta"
+				/>
 				<SingleMentorList
 					mentorImage={require("../assets/image8.png")}
-					mentorPosition="Alexandre Mathias"
-					mentorName="UX Designer at Apple"
+					mentorName="Alexandre Mathias"
+					mentorPosition="UX Designer at Apple"
 				/>
 				<SingleMentorList
 					mentorImage={require("../assets/image9.png")}
-					mentorPosition="Jamie Christie"
-					mentorName="UX Desinger at Microsoft"
-					propWidth={164}
-					propHeight={246}
-					singleMentorListCardMarginTop={12}
+					mentorName="Jamie Christie"
+					mentorPosition="UX Designer at Microsoft"
 				/>
 			</View>
 		</View>

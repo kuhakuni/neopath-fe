@@ -9,7 +9,7 @@ const NavDashboard2 = ({ style }) => {
 	return (
 		<Pressable
 			style={[styles.navdashboard, style]}
-			onPress={() => navigation.navigate("Dashboard")}
+			onPress={() => navigation.navigate("DashboardScreen")}
 		>
 			<Image
 				style={styles.nounDashboard42777762Icon}

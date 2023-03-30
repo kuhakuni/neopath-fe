@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import ButtonPrimary from "../components/Button.component";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colors from "../styles/Colors";
-import { Pressable } from "react-native";
 
 const AfterLoginScreen = ({ navigation }) => {
 	return (
@@ -76,11 +75,13 @@ const AfterLoginScreen = ({ navigation }) => {
 					fontSize={18}
 					onPress={() => navigation.navigate("PersonalFormScreen")}
 				/>
-				<Pressable
+				<TouchableOpacity
 					style={{
 						marginTop: 15,
 					}}
-					onPress={() => {}}
+					onPress={() => {
+						navigation.navigate("HomeStack");
+					}}
 				>
 					<Text
 						style={{
@@ -90,7 +91,7 @@ const AfterLoginScreen = ({ navigation }) => {
 					>
 						Skip for now
 					</Text>
-				</Pressable>
+				</TouchableOpacity>
 			</View>
 		</View>
 	);

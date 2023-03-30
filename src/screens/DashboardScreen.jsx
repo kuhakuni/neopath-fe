@@ -38,7 +38,7 @@ export default DashboardScreen = () => {
 							<Image
 								style={styles.verticalContainerIcon}
 								resizeMode="cover"
-								source={require("../assets/vertical-container3.png")}
+								source={require("../assets/learn-container.png")}
 							/>
 							<Text style={[styles.letsReflectOn, styles.ml8]}>
 								Let's reflect on your progress!

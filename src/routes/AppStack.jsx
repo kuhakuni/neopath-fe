@@ -8,8 +8,9 @@ import TestScreen from "../screens/TestScreen";
 import ResultsScreen from "../screens/ResultsScreen";
 import AfterTestScreen from "../screens/AfterTestScreen";
 import DashboardScreen from "../screens/DashboardScreen";
+import PathScreen from "../screens/PathScreen";
+import CourseDetailScreen from "../screens/CourseDetailScreen";
 import NavDashboard3 from "../components/NavDashboard3.component";
-// src\components\NavDashboard3.component.jsx
 import NavDashboard2 from "../components/NavDashboard2.component";
 import NavDashboard1 from "../components/NavDashboard1.component";
 import NavDashboard from "../components/NavDashboard.component";
@@ -43,7 +44,7 @@ const HomeStack = () => {
 								alignItems: "center",
 								flexDirection: "row",
 								justifyContent: "space-around",
-								backgroundColor: "#fff",
+								backgroundColor: "#f1F7FF",
 
 								elevation: 5,
 							}}
@@ -72,11 +73,8 @@ const HomeStack = () => {
 				);
 			}}
 		>
-			<Tab.Screen
-				name="DashboardScreen"
-				component={DashboardScreen}
-				options={{ headerShown: false }}
-			/>
+			<Tab.Screen name="DashboardScreen" component={DashboardScreen} />
+			<Tab.Screen name="PathScreen" component={PathScreen} />
 			{/* <Tab.Screen
 				name="Profile"
 				component={Profile}
@@ -107,6 +105,10 @@ export default AppStack = () => {
 			<Stack.Screen name="ResultsScreen" component={ResultsScreen} />
 			<Stack.Screen name="AfterTestScreen" component={AfterTestScreen} />
 			<Stack.Screen name="HomeStack" component={HomeStack} />
+			<Stack.Screen
+				name="CourseDetailScreen"
+				component={CourseDetailScreen}
+			/>
 		</Stack.Navigator>
 	);
 };

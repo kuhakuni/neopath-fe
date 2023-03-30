@@ -1,15 +1,7 @@
 import * as React from "react";
-import {
-	StyleProp,
-	ViewStyle,
-	Image,
-	StyleSheet,
-	View,
-	Text,
-	Pressable,
-} from "react-native";
+import { Image, StyleSheet, View, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Border, Color, Padding, FontSize,  } from "../styles/GlobalStyles";
+import { Border, Color, Padding, FontSize } from "../styles/GlobalStyles";
 
 const NavDashboard = ({ style }) => {
 	const navigation = useNavigation();
@@ -17,7 +9,7 @@ const NavDashboard = ({ style }) => {
 	return (
 		<Pressable
 			style={[styles.navdashboard, style]}
-			onPress={() => navigation.navigate("false")}
+			onPress={() => navigation.navigate("PathScreen")}
 		>
 			<View style={styles.navpath}>
 				<Image

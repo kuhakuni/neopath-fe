@@ -12,17 +12,8 @@ const SingleMentorList = ({
 	mentorImage,
 	mentorPosition,
 	mentorName,
-	propWidth,
-	propHeight,
 	singleMentorListCardMarginTop,
 }) => {
-	const imageIcon3Style = useMemo(() => {
-		return {
-			...getStyleValue("width", propWidth),
-			...getStyleValue("height", propHeight),
-		};
-	}, [propWidth, propHeight]);
-
 	const card5Style = useMemo(() => {
 		return {
 			...getStyleValue("marginTop", singleMentorListCardMarginTop),
@@ -33,11 +24,7 @@ const SingleMentorList = ({
 		<View style={[styles.card, styles.mt12, card5Style]}>
 			<View style={[styles.buttonContainer, styles.buttonFlexBox]}>
 				<View style={styles.imageContainer}>
-					<Image
-						style={[styles.imageIcon, imageIcon3Style]}
-						resizeMode="center"
-						source={mentorImage}
-					/>
+					<Image resizeMode="cover" source={mentorImage} />
 				</View>
 				<View style={[styles.buttonContainer1, styles.ml11]}>
 					<View style={styles.buttonFlexBox}>
@@ -48,7 +35,7 @@ const SingleMentorList = ({
 									styles.uxDesignerAtTypo,
 								]}
 							>
-								{mentorPosition}
+								{mentorName}
 							</Text>
 							<Text
 								style={[
@@ -57,7 +44,7 @@ const SingleMentorList = ({
 									styles.uxDesignerAtTypo,
 								]}
 							>
-								{mentorName}
+								{mentorPosition}
 							</Text>
 						</View>
 					</View>
@@ -142,18 +129,13 @@ const styles = StyleSheet.create({
 		textAlign: "left",
 		fontWeight: "500",
 	},
-	imageIcon: {
-		position: "absolute",
-		top: 0,
-		left: 0,
-		width: 134,
-		height: 108,
-	},
 	imageContainer: {
 		borderRadius: Border.br_5xs,
-		height: 99,
+		height: 100,
 		width: 78,
 		overflow: "hidden",
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	alexandreMathias: {
 		fontSize: FontSize.size_mini,

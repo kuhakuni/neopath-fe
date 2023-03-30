@@ -9,7 +9,6 @@ import {
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../styles/Colors";
-import ButtonPrimary from "../components/Button.component";
 import { useAuth } from "../config/Auth";
 import { TouchableOpacity } from "react-native";
 
@@ -97,8 +96,8 @@ const LoginScreen = () => {
 		setError(errors);
 
 		if (Object.keys(errors).length === 0) {
-			auth.signIn(email, password);
 		}
+		auth.signIn(email, password);
 		setLoading(false);
 	};
 

@@ -9,7 +9,7 @@ const NavProfile = ({ style }) => {
 	return (
 		<Pressable
 			style={[styles.navprofile, style]}
-			onPress={() => navigation.navigate("Profile")}
+			// onPress={() => navigation.navigate("ProfileScreen")}
 		>
 			<Image
 				style={styles.cocolineuserIcon}
