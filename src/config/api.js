@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getToken } from "./SessionHelper";
-const API_ENDPOINT = "http://103.52.114.33:8090";
+const API_ENDPOINT = "http://103.37.124.173:8090";
 const token = async () => await getToken();
 
 const api = axios.create({
