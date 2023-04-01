@@ -10,6 +10,10 @@ import AfterTestScreen from "../screens/AfterTestScreen";
 import DashboardScreen from "../screens/DashboardScreen";
 import PathScreen from "../screens/PathScreen";
 import CourseDetailScreen from "../screens/CourseDetailScreen";
+import ReflectiveTestScreen from "../screens/ReflectiveTestScreen";
+import CognitiveTestScreen from "../screens/CognitiveTestScreen";
+import SuitabilityTestScreen from "../screens/SuitabilityTestScreen";
+import ReflectionResultScreen from "../screens/ReflectionResultScreen";
 import NavDashboard3 from "../components/NavDashboard3.component";
 import NavDashboard2 from "../components/NavDashboard2.component";
 import NavDashboard1 from "../components/NavDashboard1.component";
@@ -108,6 +112,22 @@ export default AppStack = () => {
 			<Stack.Screen
 				name="CourseDetailScreen"
 				component={CourseDetailScreen}
+			/>
+			<Stack.Screen
+				name="ReflectiveTestScreen"
+				component={ReflectiveTestScreen}
+			/>
+			<Stack.Screen
+				name="SuitabilityTestScreen"
+				component={SuitabilityTestScreen}
+			/>
+			<Stack.Screen
+				name="CognitiveTestScreen"
+				component={CognitiveTestScreen}
+			/>
+			<Stack.Screen
+				name="ReflectionResultScreen"
+				component={ReflectionResultScreen}
 			/>
 		</Stack.Navigator>
 	);

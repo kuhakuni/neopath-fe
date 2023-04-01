@@ -9,6 +9,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colors from "../styles/Colors";
 import { Styles } from "../styles/Styles";
+import LoadingScreen from "./LoadingScreen";
 import ValueComponent from "../components/Value.component";
 import StrengthComponent from "../components/Strength.component";
 import RoleComponent from "../components/Role.component";
@@ -39,42 +40,6 @@ const Tab = ({ title, isActive, iconName, onPress }) => {
 	);
 };
 
-const LoadingScreen = () => {
-	return (
-		<View
-			style={{
-				...Styles.container,
-				justifyContent: "center",
-				alignItems: "center",
-				backgroundColor: Colors.white,
-			}}
-		>
-			<ActivityIndicator
-				size="large"
-				style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
-				color={Colors.primary}
-			/>
-			<Text
-				style={{
-					marginTop: 30,
-					fontSize: 26,
-					fontWeight: "500",
-				}}
-			>
-				Analyzing your answer
-			</Text>
-			<Text
-				style={{
-					marginTop: 5,
-					fontSize: 18,
-				}}
-			>
-				Please wait for a while.
-			</Text>
-		</View>
-	);
-};
-
 export default ResultsScreen = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [selectedTab, setSelectedTab] = useState(1);
@@ -86,7 +51,12 @@ export default ResultsScreen = () => {
 	}, []);
 
 	if (isLoading) {
-		return <LoadingScreen />;
+		return (
+			<LoadingScreen
+				title={"Analyzing your answer"}
+				subtitle={"Please wait for a while"}
+			/>
+		);
 	}
 
 	return (
