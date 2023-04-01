@@ -70,7 +70,9 @@ export default DashboardScreen = () => {
 						>
 							<Pressable
 								style={styles.buttonContainer}
-								onPress={() => navigation.navigate("Container")}
+								onPress={() =>
+									navigation.navigate("ELearningScreen")
+								}
 							>
 								<Image
 									style={styles.buttonIcon}
@@ -90,7 +92,7 @@ export default DashboardScreen = () => {
 							<Pressable
 								style={styles.buttonContainer}
 								onPress={() =>
-									navigation.navigate("Mentorship")
+									navigation.navigate("MentorScreen")
 								}
 							>
 								<Image
@@ -110,7 +112,9 @@ export default DashboardScreen = () => {
 							</Pressable>
 							<Pressable
 								style={styles.buttonContainer}
-								onPress={() => navigation.navigate("Card1")}
+								onPress={() =>
+									navigation.navigate("LiveEventScreen")
+								}
 							>
 								<Image
 									style={styles.buttonIcon}

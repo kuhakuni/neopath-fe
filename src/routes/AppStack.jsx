@@ -15,6 +15,9 @@ import ReflectiveTestScreen from "../screens/ReflectiveTestScreen";
 import CognitiveTestScreen from "../screens/CognitiveTestScreen";
 import SuitabilityTestScreen from "../screens/SuitabilityTestScreen";
 import ReflectionResultScreen from "../screens/ReflectionResultScreen";
+import LiveEventScreen from "../screens/LiveEventScreen";
+import ELearningScreen from "../screens/ELearningScreen";
+import MentorScreen from "../screens/MentorScreen";
 import NavDashboard3 from "../components/NavDashboard3.component";
 import NavDashboard2 from "../components/NavDashboard2.component";
 import NavDashboard1 from "../components/NavDashboard1.component";
@@ -81,6 +84,9 @@ const HomeStack = () => {
 			<Tab.Screen name="DashboardScreen" component={DashboardScreen} />
 			<Tab.Screen name="PathScreen" component={PathScreen} />
 			<Tab.Screen name="ProfileScreen" component={ProfileScreen} />
+			<Tab.Screen name="LiveEventScreen" component={LiveEventScreen} />
+			<Tab.Screen name="ELearningScreen" component={ELearningScreen} />
+			<Tab.Screen name="MentorScreen" component={MentorScreen} />
 		</Tab.Navigator>
 	);
 };

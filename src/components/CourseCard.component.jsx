@@ -4,7 +4,7 @@ import Colors from "../styles/Colors";
 
 const CourseCardVertical = () => {};
 
-const CourseCardHorizontal = ({ isPaid }) => {
+const CourseCardHorizontal = ({ title, isPaid, source, img }) => {
 	return (
 		<View
 			style={{
@@ -28,7 +28,7 @@ const CourseCardHorizontal = ({ isPaid }) => {
 					resizeMode: "cover",
 					marginRight: 10,
 				}}
-				source={require("../assets/course-img.png")}
+				source={img || require("../assets/course-img.png")}
 			/>
 			<View
 				style={{
@@ -43,44 +43,55 @@ const CourseCardHorizontal = ({ isPaid }) => {
 						marginBottom: 5,
 					}}
 				>
-					The 4 Most Important Laws of UX Design
+					{title || "The 4 Most Important Laws of UX Design"}
 				</Text>
-				<View
-					style={{
-						flexDirection: "row",
-					}}
-				>
+				{!source && (
 					<View
 						style={{
-							backgroundColor: "#F3F3F3",
-							paddingVertical: 5,
-							paddingHorizontal: 10,
-							marginRight: 10,
-							borderRadius: 15,
-							alignItems: "center",
-							justifyContent: "center",
+							flexDirection: "row",
 						}}
 					>
-						<Image
-							style={styles.vectorIcon}
-							resizeMode="contain"
-							source={require("../assets/vector1.png")}
-						/>
+						<View
+							style={{
+								backgroundColor: "#F3F3F3",
+								paddingVertical: 5,
+								paddingHorizontal: 10,
+								marginRight: 10,
+								borderRadius: 15,
+								alignItems: "center",
+								justifyContent: "center",
+							}}
+						>
+							<Image
+								style={styles.vectorIcon}
+								resizeMode="contain"
+								source={require("../assets/vector1.png")}
+							/>
+						</View>
+						{isPaid ? (
+							<Chips
+								title={"Paid"}
+								textColor={Colors.white}
+								bgColor={Colors.secondary}
+							/>
+						) : (
+							<Chips
+								title={"Free"}
+								textColor={Colors.white}
+								bgColor={Colors.primary}
+							/>
+						)}
 					</View>
-					{isPaid ? (
-						<Chips
-							title={"Paid"}
-							textColor={Colors.white}
-							bgColor={Colors.secondary}
-						/>
-					) : (
-						<Chips
-							title={"Free"}
-							textColor={Colors.white}
-							bgColor={Colors.primary}
-						/>
-					)}
-				</View>
+				)}
+				<Text
+					style={{
+						color: Colors.gray,
+						fontSize: 14,
+						fontWeight: "500",
+					}}
+				>
+					{source}
+				</Text>
 			</View>
 		</View>
 	);

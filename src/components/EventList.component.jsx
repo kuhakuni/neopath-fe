@@ -12,13 +12,13 @@ import { AntDesign } from "@expo/vector-icons";
 import LiveEvents from "./LiveEvents.component";
 import { Color, FontSize, Border, Padding } from "../styles/GlobalStyles";
 
-const EventList = () => {
+const EventList = ({ title }) => {
 	const navigation = useNavigation();
 
 	return (
 		<View style={[styles.eventContainer, styles.mt20]}>
 			<View style={styles.titleContainer}>
-				<Text style={styles.liveEvents}>Live events</Text>
+				<Text style={styles.liveEvents}>{title || "Live events"}</Text>
 				<Pressable
 					style={styles.horizontalContainer}
 					onPress={() => navigation.navigate("Card1")}

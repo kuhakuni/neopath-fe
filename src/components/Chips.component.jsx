@@ -14,7 +14,6 @@ export default Chips = ({ title, textColor, bgColor }) => {
 			<Text
 				style={{
 					color: textColor,
-
 					fontSize: 16,
 				}}
 			>
