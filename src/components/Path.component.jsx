@@ -1,76 +1,137 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Padding, Color, FontSize, Border } from "../styles/GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
+import Colors from "../styles/Colors";
 
-export const Path = ({ titleStep, isActive }) => {
+export const Path = ({ titleStep, isActive, isDone, isLocked, isTest }) => {
+	const navigate = useNavigation();
+	const route = !isTest ? "CourseDetailScreen" : "ReflectiveTestScreen";
 	return (
-		<View
-			style={[
-				styles.button,
-				{
-					marginVertical: 15,
-				},
-			]}
-		>
-			<Image
-				style={styles.sliderContainerIcon}
-				resizeMode="cover"
-				source={require("../assets/slider-container1.png")}
-			/>
-			<View style={[styles.ml8]}>
-				<View
-					style={[
-						styles.textInput,
-						styles.button1FlexBox,
-						isActive && {
-							backgroundColor: Color.royalblue_100,
-						},
-					]}
-				>
-					<Text
-						style={[
-							styles.learnToConduct,
-							styles.microsoftFlexBox,
-							isActive && {
-								color: Color.white,
-							},
-						]}
+		<>
+			<View
+				style={[
+					styles.button,
+					{
+						marginVertical: 15,
+					},
+				]}
+			>
+				<Image
+					style={styles.sliderContainerIcon}
+					resizeMode="cover"
+					source={require("../assets/slider-container1.png")}
+				/>
+				<View style={[styles.ml8]}>
+					<View
+						style={{
+							flexDirection: "row",
+							alignItems: "center",
+							justifyContent: "space-between",
+						}}
 					>
-						{titleStep}
-					</Text>
-				</View>
-				<View style={[styles.buttonContainer, styles.mt4]}>
-					<View style={[styles.button1, styles.button1FlexBox]}>
-						<Image
-							style={styles.vectorIcon}
-							resizeMode="cover"
-							source={require("../assets/vector1.png")}
-						/>
+						<TouchableOpacity
+							disabled={isLocked}
+							onPress={() => {
+								navigate.navigate(route);
+							}}
+							style={[
+								styles.textInput,
+								styles.button1FlexBox,
+								isActive && {
+									backgroundColor: Color.royalblue_100,
+								},
+								isTest && {
+									backgroundColor: "#D2D8E1",
+									paddingHorizontal: 20,
+									paddingVertical: 7,
+								},
+							]}
+						>
+							<Text
+								style={[
+									styles.learnToConduct,
+									styles.microsoftFlexBox,
+									isActive && {
+										color: Color.white,
+									},
+									isTest && {
+										color: "#838383",
+									},
+								]}
+							>
+								{titleStep}
+							</Text>
+						</TouchableOpacity>
+						{isActive && (
+							<Text
+								style={{
+									color: Colors.primary,
+									fontSize: 16,
+									marginLeft: 5,
+									paddingVertical: 5,
+									paddingHorizontal: 10,
+									borderWidth: 1,
+									borderColor: Colors.primary,
+									borderRadius: 50,
+								}}
+							>
+								Done
+							</Text>
+						)}
+						{isDone && (
+							<MaterialIcons
+								name="verified"
+								size={24}
+								style={{
+									marginLeft: 5,
+								}}
+								color={Colors.primary}
+							/>
+						)}
 					</View>
 					<View
 						style={[
-							styles.button1,
-							styles.ml4,
-							styles.button1FlexBox,
+							styles.buttonContainer,
+							styles.mt4,
+							{
+								display: isTest ? "none" : "flex",
+							},
 						]}
 					>
-						<Image
-							style={styles.buttonIcon}
-							resizeMode="cover"
-							source={require("../assets/button4.png")}
-						/>
-						<Text
+						<View style={[styles.button1, styles.button1FlexBox]}>
+							<Image
+								style={styles.vectorIcon}
+								resizeMode="cover"
+								source={require("../assets/vector1.png")}
+							/>
+						</View>
+						<View
 							style={[
-								styles.microsoft,
+								styles.button1,
 								styles.ml4,
-								styles.microsoftFlexBox,
+								styles.button1FlexBox,
 							]}
 						>
-							Microsoft
-						</Text>
+							<Image
+								style={styles.buttonIcon}
+								resizeMode="cover"
+								source={require("../assets/button4.png")}
+							/>
+							<Text
+								style={[
+									styles.microsoft,
+									styles.ml4,
+									styles.microsoftFlexBox,
+								]}
+							>
+								Microsoft
+							</Text>
+						</View>
 					</View>
 				</View>
 			</View>
-		</View>
+		</>
 	);
 };
 const styles = StyleSheet.create({
