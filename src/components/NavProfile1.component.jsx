@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	navprofile: {
-		width: 50,
+		width: 55,
 		paddingHorizontal: Padding.p_3xs,
 		paddingVertical: 0,
 		alignItems: "center",

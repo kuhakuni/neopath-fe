@@ -9,7 +9,7 @@ const NavProfile = ({ style }) => {
 	return (
 		<Pressable
 			style={[styles.navprofile, style]}
-			// onPress={() => navigation.navigate("ProfileScreen")}
+			onPress={() => navigation.navigate("ProfileScreen")}
 		>
 			<Image
 				style={styles.cocolineuserIcon}
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	navprofile: {
+		width: 55,
 		paddingHorizontal: Padding.p_3xs,
 		paddingVertical: 0,
 		alignItems: "center",

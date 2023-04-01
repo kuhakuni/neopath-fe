@@ -76,7 +76,6 @@ const LoginScreen = () => {
 	});
 
 	const handleLogin = async () => {
-		setLoading(true);
 		let errors = {};
 
 		if (!email) {
@@ -96,9 +95,9 @@ const LoginScreen = () => {
 		setError(errors);
 
 		if (Object.keys(errors).length === 0) {
+			auth.signIn(email, password);
+			setLoading(false);
 		}
-		auth.signIn(email, password);
-		setLoading(false);
 	};
 
 	return (

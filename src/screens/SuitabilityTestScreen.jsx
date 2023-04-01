@@ -14,104 +14,9 @@ import * as Progress from "react-native-progress";
 import { Styles } from "../styles/Styles";
 import Colors from "../styles/Colors";
 import RadioButton from "../components/RadioButton.component";
+import { useAuth } from "../config/Auth";
+import { API_SERVICE } from "../config/api";
 
-const AnswerInput = ({ setCurrentAnswer }) => {
-	const [value, setValue] = useState();
-	const handlePress = (val) => {
-		if (val === value) {
-			setValue(null);
-			setCurrentAnswer(0);
-		} else {
-			setValue(val);
-			setCurrentAnswer(val);
-		}
-	};
-
-	return (
-		<>
-			<Pressable
-				style={[
-					styles.answerContainer,
-					value === 4 && styles.selectedAnswerContainer,
-				]}
-				onPress={() => handlePress(4)}
-			>
-				<RadioButton
-					isActive={value === 4}
-					onPress={() => handlePress(4)}
-				/>
-				<Text
-					style={[
-						styles.answer,
-						value === 4 && styles.selectedAnswer,
-					]}
-				>
-					Strongly Agree
-				</Text>
-			</Pressable>
-			<Pressable
-				style={[
-					styles.answerContainer,
-					value === 3 && styles.selectedAnswerContainer,
-				]}
-				onPress={() => handlePress(3)}
-			>
-				<RadioButton
-					isActive={value === 3}
-					onPress={() => handlePress(3)}
-				/>
-				<Text
-					style={[
-						styles.answer,
-						value === 3 && styles.selectedAnswer,
-					]}
-				>
-					Agree
-				</Text>
-			</Pressable>
-			<Pressable
-				style={[
-					styles.answerContainer,
-					value === 2 && styles.selectedAnswerContainer,
-				]}
-				onPress={() => handlePress(2)}
-			>
-				<RadioButton
-					isActive={value === 2}
-					onPress={() => handlePress(2)}
-				/>
-				<Text
-					style={[
-						styles.answer,
-						value === 2 && styles.selectedAnswer,
-					]}
-				>
-					Disagree
-				</Text>
-			</Pressable>
-			<Pressable
-				style={[
-					styles.answerContainer,
-					value === 3 && styles.selectedAnswerContainer,
-				]}
-				onPress={() => handlePress(1)}
-			>
-				<RadioButton
-					isActive={value === 1}
-					onPress={() => handlePress(1)}
-				/>
-				<Text
-					style={[
-						styles.answer,
-						value === 1 && styles.selectedAnswer,
-					]}
-				>
-					Strongly Disagree
-				</Text>
-			</Pressable>
-		</>
-	);
-};
 const Instruction = () => {
 	const data = [
 		{
@@ -157,13 +62,16 @@ export default SuitabilityTestScreen = () => {
 	const [section, setSection] = useState(1);
 	const [answer, setAnswer] = useState([]);
 	const [currentAnswer, setCurrentAnswer] = useState(0);
+	const [question, setQuestion] = useState({});
 	const questionPerSection = 5;
-	const totalSection = 2;
+	const totalSection = 5;
 	const width = Dimensions.get("window").width;
 	const navigation = useNavigation();
+	const { authData } = useAuth();
 
 	const goBack = () => {
 		if (section === 1 && currentPage === 1) return;
+		setCurrentAnswer(0);
 		if (currentPage === 1) {
 			setSection((prev) => {
 				return prev - 1;
@@ -176,17 +84,20 @@ export default SuitabilityTestScreen = () => {
 		});
 	};
 	const goNext = () => {
+		if (currentAnswer === 0) return;
 		setAnswer((prev) => {
+			//check if answer already exist and replace if user change answer
+
 			return [
 				...prev,
 				{
-					page: currentPage,
-					section: section,
-					answer: currentAnswer,
-					questionId: 1,
+					SectionID: section,
+					Answer: currentAnswer,
+					QuestionID: question.ID,
 				},
 			];
 		});
+		setCurrentAnswer(0);
 		if (section === totalSection && currentPage === questionPerSection)
 			return;
 		if (currentPage === questionPerSection) {
@@ -201,11 +112,131 @@ export default SuitabilityTestScreen = () => {
 		});
 	};
 	const handleSubmit = () => {
+		// add 25th data to answer array
+		setAnswer((prev) => {
+			return [
+				...prev,
+				{
+					SectionID: section,
+					Answer: currentAnswer,
+					QuestionID: question.ID,
+				},
+			];
+		});
 		navigation.navigate("ReflectionResultScreen", { answer: answer });
 	};
+
+	const AnswerInput = () => {
+		const handlePress = (val) => {
+			if (val === currentAnswer) {
+				setCurrentAnswer(0);
+			} else {
+				setCurrentAnswer(val);
+			}
+		};
+
+		return (
+			<>
+				<Pressable
+					style={[
+						styles.answerContainer,
+						currentAnswer === 4 && styles.selectedAnswerContainer,
+					]}
+					onPress={() => handlePress(4)}
+				>
+					<RadioButton
+						isActive={currentAnswer === 4}
+						onPress={() => handlePress(4)}
+					/>
+					<Text
+						style={[
+							styles.answer,
+							currentAnswer === 4 && styles.selectedAnswer,
+						]}
+					>
+						Strongly Agree
+					</Text>
+				</Pressable>
+				<Pressable
+					style={[
+						styles.answerContainer,
+						currentAnswer === 3 && styles.selectedAnswerContainer,
+					]}
+					onPress={() => handlePress(3)}
+				>
+					<RadioButton
+						isActive={currentAnswer === 3}
+						onPress={() => handlePress(3)}
+					/>
+					<Text
+						style={[
+							styles.answer,
+							currentAnswer === 3 && styles.selectedAnswer,
+						]}
+					>
+						Agree
+					</Text>
+				</Pressable>
+				<Pressable
+					style={[
+						styles.answerContainer,
+						currentAnswer === 2 && styles.selectedAnswerContainer,
+					]}
+					onPress={() => handlePress(2)}
+				>
+					<RadioButton
+						isActive={currentAnswer === 2}
+						onPress={() => handlePress(2)}
+					/>
+					<Text
+						style={[
+							styles.answer,
+							currentAnswer === 2 && styles.selectedAnswer,
+						]}
+					>
+						Disagree
+					</Text>
+				</Pressable>
+				<Pressable
+					style={[
+						styles.answerContainer,
+						currentAnswer === 1 && styles.selectedAnswerContainer,
+					]}
+					onPress={() => handlePress(1)}
+				>
+					<RadioButton
+						isActive={currentAnswer === 1}
+						onPress={() => handlePress(1)}
+					/>
+					<Text
+						style={[
+							styles.answer,
+							currentAnswer === 1 && styles.selectedAnswer,
+						]}
+					>
+						Strongly Disagree
+					</Text>
+				</Pressable>
+			</>
+		);
+	};
 	useEffect(() => {
-		console.log(currentAnswer);
-	}, [currentAnswer]);
+		if (currentPage === 0) return;
+		API_SERVICE.student.get
+			.question(
+				authData,
+				`/reflection/question?role=UX%20Designer&section=${section}&page=${currentPage}`
+			)
+			.then((res) => {
+				if (res.data.Success) {
+					setQuestion(res.data.Body);
+				}
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	}, [currentPage, section]);
+
 	return (
 		<View
 			style={[
@@ -282,8 +313,7 @@ export default SuitabilityTestScreen = () => {
 									marginBottom: 20,
 								}}
 							>
-								I have no difficulty in explaining to others
-								what I know.
+								{question.Question}
 							</Text>
 							<AnswerInput
 								setCurrentAnswer={(val) =>
@@ -327,6 +357,7 @@ export default SuitabilityTestScreen = () => {
 								<TouchableOpacity
 									style={[styles.button]}
 									onPress={() => goNext()}
+									disabled={currentAnswer === 0}
 									activeOpacity={0.7}
 								>
 									<Text style={styles.buttonText}>Next</Text>

@@ -1,8 +1,14 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import { Path } from "./Path.component";
-import { Padding, Color, FontSize, Border } from "../styles/GlobalStyles";
 import Colors from "../styles/Colors";
+
+const data = [
+	{
+		title: "Introduction to UX Design",
+		isDone: true,
+	},
+];
 
 const Level = ({ title, isLocked }) => {
 	return (
@@ -47,11 +53,24 @@ export const LearningPath = () => {
 				}}
 			>
 				<Level title={"Level 1: Novice"} />
-				<Path titleStep={"Introduction to UX Design"} />
-				<Path titleStep={"Learn UX fundamentals"} isActive />
-				<Path titleStep={"Develop skills in user research"} />
-				<Path titleStep={"Master UX Design tools"} />
-				<Path titleStep={"Build a simple UX design project"} />
+				<View
+					style={{
+						position: "relative",
+					}}
+				>
+					<Path titleStep={"Introduction to UX Design"} isDone />
+					<Path titleStep={"Learn UX fundamentals"} isActive />
+					<Path
+						titleStep={"Develop skills in user research"}
+						isLocked
+					/>
+					<Path titleStep={"Master UX Design tools"} isLocked />
+					<Path
+						titleStep={"Build a simple UX design project"}
+						isLocked
+					/>
+					<Path titleStep={"Reflection Test"} isTest />
+				</View>
 			</View>
 			<View
 				style={{

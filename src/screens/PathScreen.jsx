@@ -145,7 +145,7 @@ export default PathScreen = () => {
 				</View>
 			</View>
 			<ScrollView>
-				{isCareerPath ? <PathListCardContainer /> : <LearningPath />}
+				{isCareerPath ? <CareerPath /> : <LearningPath />}
 			</ScrollView>
 		</View>
 	);

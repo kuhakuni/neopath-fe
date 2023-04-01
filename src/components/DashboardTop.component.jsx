@@ -33,7 +33,7 @@ const DashboardTop = () => {
 				</View>
 				<Pressable
 					style={styles.horizontalContainer}
-					onPress={() => navigation.navigate("TestList")}
+					onPress={() => navigation.navigate("TestListScreen")}
 				>
 					<View
 						style={[

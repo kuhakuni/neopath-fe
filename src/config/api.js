@@ -1,7 +1,5 @@
 import axios from "axios";
-import { getToken } from "./SessionHelper";
 const API_ENDPOINT = "http://103.37.124.173:8090";
-const token = async () => await getToken();
 
 const api = axios.create({
 	baseURL: API_ENDPOINT,
@@ -11,7 +9,7 @@ const api = axios.create({
 });
 
 //get data with token
-const getData = async (url, params = {}) => {
+const getData = async (token, url, params = {}) => {
 	return await api.get(url, {
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -20,7 +18,7 @@ const getData = async (url, params = {}) => {
 	});
 };
 
-const sendPost = async (url, data) => {
+const sendPost = async (token, url, data) => {
 	return await api.post(url, data, {
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -28,7 +26,7 @@ const sendPost = async (url, data) => {
 	});
 };
 
-const sendPut = async (url, data) => {
+const sendPut = async (token, url, data) => {
 	return await api.put(url, data, {
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -43,17 +41,23 @@ const login = async (data) => {
 export const API_SERVICE = {
 	student: {
 		login: (data) => login(data),
+		post: {
+			reflection: (token, data) =>
+				sendPost(token, "/reflection/answer", data),
+		},
 		put: {
 			updateProfile: (data) => sendPut("/student/profile", data),
 		},
 		get: {
-			profile: () => getData("/student/profile"),
+			profile: (token) => getData(token, "/student/profile"),
+			result: (token) => getData(token, "/reflection/evaluation"),
+			question: (token, url) => getData(token, url),
 		},
 	},
 	mentor: {
 		get: {
-			all: () => getData("/mentor/all"),
-			profile: (id) => getData("/mentor/details", id),
+			all: (token) => getData(token, "/mentor/all"),
+			profile: (token, id) => getData(token, "/mentor/details", id),
 		},
 	},
 };

@@ -8,6 +8,7 @@ import TestScreen from "../screens/TestScreen";
 import ResultsScreen from "../screens/ResultsScreen";
 import AfterTestScreen from "../screens/AfterTestScreen";
 import DashboardScreen from "../screens/DashboardScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import PathScreen from "../screens/PathScreen";
 import CourseDetailScreen from "../screens/CourseDetailScreen";
 import ReflectiveTestScreen from "../screens/ReflectiveTestScreen";
@@ -79,11 +80,7 @@ const HomeStack = () => {
 		>
 			<Tab.Screen name="DashboardScreen" component={DashboardScreen} />
 			<Tab.Screen name="PathScreen" component={PathScreen} />
-			{/* <Tab.Screen
-				name="Profile"
-				component={Profile}
-				options={{ headerShown: false }}
-			/> */}
+			<Tab.Screen name="ProfileScreen" component={ProfileScreen} />
 		</Tab.Navigator>
 	);
 };

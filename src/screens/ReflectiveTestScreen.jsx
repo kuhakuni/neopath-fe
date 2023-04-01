@@ -11,6 +11,10 @@ import { useNavigation } from "@react-navigation/native";
 import Chips from "../components/Chips.component";
 import ButtonPrimary from "../components/Button.component";
 import Colors from "../styles/Colors";
+import { API_SERVICE } from "../config/api";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useAuth } from "../config/Auth";
 
 const TestCard = ({ title, description, img, score, to }) => {
 	return (
@@ -36,7 +40,22 @@ const TestCard = ({ title, description, img, score, to }) => {
 	);
 };
 export default ReflectiveTestScreen = () => {
+	const { authData } = useAuth();
 	const navigation = useNavigation();
+	const [score, setScore] = useState();
+	useEffect(() => {
+		API_SERVICE.student.get
+			.result(authData)
+			.then((res) => {
+				if (res.data.Success) {
+					setScore(res.data.Body.AvgAll);
+				}
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	}, []);
+
 	return (
 		<View
 			style={{
@@ -175,13 +194,13 @@ export default ReflectiveTestScreen = () => {
 						title={"Suitability"}
 						description={"Am I a good fit for a UX designer?"}
 						img={require("../assets/suitability-img.png")}
+						score={score}
 						to={() => navigation.navigate("SuitabilityTestScreen")}
 					/>
 					<TestCard
 						title={"Cognitive Ability"}
 						description={"Know your cognitive ability"}
 						img={require("../assets/cognitive-img.png")}
-						score={9.3}
 						to={() => navigation.navigate("CognitiveTestScreen")}
 					/>
 				</View>

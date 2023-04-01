@@ -18,7 +18,14 @@ export const Path = ({ titleStep, isActive, isDone, isLocked, isTest }) => {
 				]}
 			>
 				<Image
-					style={styles.sliderContainerIcon}
+					style={[
+						styles.sliderContainerIcon,
+						isDone && {
+							borderWidth: 1,
+							borderColor: Color.royalblue_100,
+							borderRadius: 50,
+						},
+					]}
 					resizeMode="cover"
 					source={require("../assets/slider-container1.png")}
 				/>

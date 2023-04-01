@@ -39,17 +39,17 @@ const AuthProvider = ({ children }) => {
 	const signIn = (email, pass) => {
 		//call the service passing credential (email and password).
 		//In a real App this data will be provided by the user from some InputText components.
-		// API_SERVICE.student
-		// 	.login({ Email: email, Password: pass })
-		// 	.then((res) => {
-		// 		const { Token } = res.data.Body;
-		// 		setAuthData(Token);
-		// 	})
-		// 	.catch((e) => {
-		// 		console.log(e);
-		// 		Alert.alert("Error", "Invalid credentials");
-		// 	});
-		setAuthData("token");
+		API_SERVICE.student
+			.login({ Email: email, Password: pass })
+			.then((res) => {
+				const { Token } = res.data.Body;
+				setAuthData(Token);
+			})
+			.catch((e) => {
+				console.log(e);
+				Alert.alert("Error", "Invalid credentials");
+			});
+		// setAuthData("token");
 		//Set the data in the context, so the App can be notified
 		//and send the user to the AuthStack
 
