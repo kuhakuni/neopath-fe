@@ -49,6 +49,7 @@ export default CourseDetailScreen = ({ navigation }) => {
 					Styles.container,
 					{
 						paddingHorizontal: 0,
+                        paddingTop:20
 					},
 				]}
 			>
@@ -235,9 +236,9 @@ export default CourseDetailScreen = ({ navigation }) => {
 							}}
 						>
 							<CourseCardHorizontal />
+							<CourseCardHorizontal isPaid />
 							<CourseCardHorizontal />
-							<CourseCardHorizontal />
-							<CourseCardHorizontal />
+							<CourseCardHorizontal isPaid />
 						</View>
 					</View>
 				</View>
