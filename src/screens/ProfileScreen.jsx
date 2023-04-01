@@ -125,6 +125,9 @@ export default ProfileScreen = ({ navigation }) => {
 						}}
 					>
 						<TouchableOpacity
+							onPress={() => {
+								navigation.navigate("ResultsScreen");
+							}}
 							style={{
 								backgroundColor: "transparent",
 								paddingVertical: 3,

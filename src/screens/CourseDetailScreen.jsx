@@ -42,6 +42,8 @@ const Tab = ({ title, isActive, iconName, onPress }) => {
 
 export default CourseDetailScreen = ({ navigation }) => {
 	const [selectedTab, setSelectedTab] = useState(1);
+	const [data, setData] = useState([]);
+
 	return (
 		<ScrollView>
 			<SafeAreaView
@@ -49,7 +51,7 @@ export default CourseDetailScreen = ({ navigation }) => {
 					Styles.container,
 					{
 						paddingHorizontal: 0,
-                        paddingTop:20
+						backgroundColor: Colors.white,
 					},
 				]}
 			>

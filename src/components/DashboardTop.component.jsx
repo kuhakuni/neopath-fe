@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
+import {
+	Image,
+	StyleSheet,
+	Text,
+	View,
+	Pressable,
+	TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { Color, Padding, Border, FontSize } from "../styles/GlobalStyles";
@@ -31,7 +38,7 @@ const DashboardTop = () => {
 						</Text>
 					</View>
 				</View>
-				<Pressable
+				<TouchableOpacity
 					style={styles.horizontalContainer}
 					onPress={() => navigation.navigate("TestListScreen")}
 				>
@@ -48,7 +55,7 @@ const DashboardTop = () => {
 						/>
 						<Text style={[styles.test, styles.ml6]}>Test</Text>
 					</View>
-				</Pressable>
+				</TouchableOpacity>
 			</View>
 			<View style={[styles.containerCard, styles.mt12]}>
 				<View

@@ -18,6 +18,7 @@ import ReflectionResultScreen from "../screens/ReflectionResultScreen";
 import LiveEventScreen from "../screens/LiveEventScreen";
 import ELearningScreen from "../screens/ELearningScreen";
 import MentorScreen from "../screens/MentorScreen";
+import TestListScreen from "../screens/TestListScreen";
 import NavDashboard3 from "../components/NavDashboard3.component";
 import NavDashboard2 from "../components/NavDashboard2.component";
 import NavDashboard1 from "../components/NavDashboard1.component";
@@ -132,6 +133,7 @@ export default AppStack = () => {
 				name="ReflectionResultScreen"
 				component={ReflectionResultScreen}
 			/>
+			<Stack.Screen name="TestListScreen" component={TestListScreen} />
 		</Stack.Navigator>
 	);
 };
