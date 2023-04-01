@@ -108,7 +108,7 @@ export default PathScreen = () => {
 						flexDirection: "row",
 						alignItems: "center",
 						justifyContent: "flex-start",
-						paddingHorizontal: 35,
+						paddingHorizontal: 30,
 						marginTop: 15,
 						borderBottomRightRadius: 30,
 						borderBottomLeftRadius: 30,
@@ -138,8 +138,9 @@ export default PathScreen = () => {
 							paddingRight: 35,
 						}}
 					>
-						These are suggested path for becoming a great UX
-						Designer.
+						{isCareerPath
+							? "Here are some suggested paths to kickstart your career as a UX designer."
+							: "Here are some recommended paths to begin learning about UX design."}
 					</Text>
 				</View>
 			</View>
