@@ -1,16 +1,20 @@
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, Pressable } from "react-native";
 import { Border, Color, Padding } from "../styles/GlobalStyles";
 import Colors from "../styles/Colors";
+import { Linking } from "react-native";
 
 const CourseCardVertical = () => {};
 
-const CourseCardHorizontal = ({ title, isPaid, source, img }) => {
+const CourseCardHorizontal = ({ title, isPaid, source, img, url = "" }) => {
 	return (
-		<View
+		<Pressable
+			onPress={() => {
+				if (!url) return;
+				Linking.openURL(url);
+			}}
 			style={{
 				flexDirection: "row",
 				alignItems: "center",
-				justifyContent: "space-between",
 				borderRadius: 15,
 				maxWidth: "100%",
 				marginVertical: 10,
@@ -20,16 +24,29 @@ const CourseCardHorizontal = ({ title, isPaid, source, img }) => {
 				borderColor: "#F3F3F3",
 			}}
 		>
-			<Image
-				style={{
-					width: "40%",
-					height: 80,
-					borderRadius: 10,
-					resizeMode: "cover",
-					marginRight: 10,
-				}}
-				source={img || require("../assets/course-img.png")}
-			/>
+			{img?.length > 0 ? (
+				<Image
+					style={{
+						width: "40%",
+						height: 80,
+						borderRadius: 10,
+						resizeMode: "cover",
+						marginRight: 10,
+					}}
+					source={{ uri: img }}
+				/>
+			) : (
+				<Image
+					style={{
+						width: "40%",
+						height: 80,
+						borderRadius: 10,
+						resizeMode: "cover",
+						marginRight: 10,
+					}}
+					source={require("../assets/course-img.png")}
+				/>
+			)}
 			<View
 				style={{
 					alignContent: "flex-start",
@@ -93,7 +110,7 @@ const CourseCardHorizontal = ({ title, isPaid, source, img }) => {
 					{source}
 				</Text>
 			</View>
-		</View>
+		</Pressable>
 	);
 };
 

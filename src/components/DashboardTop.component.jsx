@@ -201,7 +201,9 @@ const DashboardTop = () => {
 								styles.buttonsmallprimaryFlexBox,
 							]}
 							onPress={() =>
-								navigation.navigate("CourseDetailScreen")
+								navigation.navigate("CourseDetailScreen", {
+									id: 2,
+								})
 							}
 						>
 							<Text

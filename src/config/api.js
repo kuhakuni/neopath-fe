@@ -52,6 +52,9 @@ export const API_SERVICE = {
 			profile: (token) => getData(token, "/student/profile"),
 			result: (token) => getData(token, "/reflection/evaluation"),
 			question: (token, url) => getData(token, url),
+			course: (token) =>
+				getData(token, "/course/meta?role=UX%20Designer"),
+			detailCourse: (token, id) => getData(token, `/course/data/${id}`),
 		},
 	},
 	mentor: {

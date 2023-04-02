@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	TouchableOpacity,
 	StyleSheet,
@@ -8,12 +8,13 @@ import {
 	SafeAreaView,
 	ScrollView,
 } from "react-native";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { CourseCardHorizontal } from "../components/CourseCard.component";
 import Chips from "../components/Chips.component";
 import Colors from "../styles/Colors";
-import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Styles } from "../styles/Styles";
-
+import { useAuth } from "../config/Auth";
+import { API_SERVICE } from "../config/api";
 const Tab = ({ title, isActive, iconName, onPress }) => {
 	return (
 		<TouchableOpacity
@@ -40,10 +41,21 @@ const Tab = ({ title, isActive, iconName, onPress }) => {
 	);
 };
 
-export default CourseDetailScreen = ({ navigation }) => {
+export default CourseDetailScreen = ({ navigation, route }) => {
+	const { id, title, description } = route.params;
+	const { authData } = useAuth();
 	const [selectedTab, setSelectedTab] = useState(1);
 	const [data, setData] = useState([]);
-
+	useEffect(() => {
+		API_SERVICE.student.get
+			.detailCourse(authData, id)
+			.then((res) => {
+				setData(res.data.Body);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	}, []);
 	return (
 		<ScrollView>
 			<SafeAreaView
@@ -106,18 +118,15 @@ export default CourseDetailScreen = ({ navigation }) => {
 							marginVertical: 10,
 						}}
 					>
-						Learn UX Fundamentals
+						{title || "Learn UX Fundamentals"}
 					</Text>
 					<Text
 						style={{
 							color: "#4A4A4A",
 						}}
 					>
-						Learning UX fundamentals is important because it
-						provides a strong foundation for creating effective and
-						user-friendly products or services. Besides, you will be
-						able to design products that are intuitive, accessible,
-						and meet the needs of your target audience.
+						{description ||
+							"Learning UX fundamentals is important because it provides a strong foundation for creating effective and user-friendly products or services. Besides, you will be able to design products that are intuitive, accessible, and meet the needs of your target audience."}
 					</Text>
 				</View>
 				<View
@@ -237,10 +246,32 @@ export default CourseDetailScreen = ({ navigation }) => {
 								marginTop: 10,
 							}}
 						>
-							<CourseCardHorizontal />
-							<CourseCardHorizontal isPaid />
-							<CourseCardHorizontal />
-							<CourseCardHorizontal isPaid />
+							{selectedTab === 1 &&
+								data.map((item, index) => {
+									return (
+										<CourseCardHorizontal
+											key={index}
+											title={item.Title}
+											source={item.Source}
+											img={item.Thumbnail}
+											isPaid={item.IsPaid}
+											url={item.Url}
+										/>
+									);
+								})}
+							{selectedTab === 2 && <CourseCardHorizontal />}
+							{selectedTab === 3 && (
+								<Text
+									style={{
+										fontSize: 18,
+										fontWeight: "500",
+										textAlign: "center",
+										marginBottom: 50,
+									}}
+								>
+									No modules are available
+								</Text>
+							)}
 						</View>
 					</View>
 				</View>

@@ -1,14 +1,10 @@
 import { Image, StyleSheet, Text, View } from "react-native";
+import { useState, useEffect } from "react";
 import { Fontisto } from "@expo/vector-icons";
+import { useAuth } from "../config/Auth";
+import { API_SERVICE } from "../config/api";
 import { Path } from "./Path.component";
 import Colors from "../styles/Colors";
-
-const data = [
-	{
-		title: "Introduction to UX Design",
-		isDone: true,
-	},
-];
 
 const Level = ({ title, isLocked }) => {
 	return (
@@ -40,6 +36,20 @@ const Level = ({ title, isLocked }) => {
 };
 
 export const LearningPath = () => {
+	const [data, setData] = useState([]);
+	const { authData } = useAuth();
+	useEffect(() => {
+		API_SERVICE.student.get
+			.course(authData)
+			.then((res) => {
+				if (res.data.Success) {
+					setData(res.data.Body);
+				}
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	}, []);
 	return (
 		<View
 			style={{
@@ -53,7 +63,24 @@ export const LearningPath = () => {
 				}}
 			>
 				<Level title={"Level 1: Novice"} />
-				<View
+				{data.map((item, index) => {
+					if (item.Level === "Novice") {
+						return (
+							<Path
+								key={index}
+								titleStep={item.Name}
+								isLocked={index > 1}
+								isDone={index === 0}
+								isActive={index === 1}
+								id={item.ID}
+								title={item.Name}
+								description={item.Deskripsi}
+							/>
+						);
+					}
+				})}
+				<Path titleStep={"Reflection Test"} isTest />
+				{/* <View
 					style={{
 						position: "relative",
 					}}
@@ -70,7 +97,7 @@ export const LearningPath = () => {
 						isLocked
 					/>
 					<Path titleStep={"Reflection Test"} isTest />
-				</View>
+				</View> */}
 			</View>
 			<View
 				style={{

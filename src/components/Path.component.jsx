@@ -3,10 +3,23 @@ import { Padding, Color, FontSize, Border } from "../styles/GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import Colors from "../styles/Colors";
+import { useAuth } from "../config/Auth";
+import { API_SERVICE } from "../config/api";
+import { useState } from "react";
 
-export const Path = ({ titleStep, isActive, isDone, isLocked, isTest }) => {
+export const Path = ({
+	titleStep,
+	isActive,
+	isDone,
+	isLocked,
+	isTest,
+	id,
+	title,
+	description,
+}) => {
 	const navigate = useNavigation();
 	const route = !isTest ? "CourseDetailScreen" : "ReflectiveTestScreen";
+
 	return (
 		<>
 			<View
@@ -40,7 +53,11 @@ export const Path = ({ titleStep, isActive, isDone, isLocked, isTest }) => {
 						<TouchableOpacity
 							disabled={isLocked}
 							onPress={() => {
-								navigate.navigate(route);
+								navigate.navigate(route, {
+									id,
+									title,
+									description,
+								});
 							}}
 							style={[
 								styles.textInput,
